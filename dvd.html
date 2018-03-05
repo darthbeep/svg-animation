@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>movie</title>
+    </head>
+    <body>
+        <svg width=600 height=400
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+            <script type="text/javascript">
+            var xdir = 1;
+            var ydir = 1;
+            var speed = 0;
+                function move() {
+                    var img = document.getElementById('img');
+                    var oldX = parseInt(img.getAttribute("x"));
+                    var oldY = parseInt(img.getAttribute("y"));
+                    if (oldX > 550 || oldX < 0) {
+                        xdir = xdir * -1;
+                    }
+                    if (oldY > 350 || oldY < 0) {
+                        ydir = ydir * -1;
+                    }
+                    img.setAttribute("x", oldX+(xdir * speed));
+                    img.setAttribute("y", oldY+(ydir * speed));
+                }
+
+            </script>
+            <g>
+                <image href="https://www.winxdvd.com/face_style/dvd-ripper.png" alt="dvd" style="width: 50px; height:50px" x="0" y="50" id="img">
+            </g>
+        </svg>
+        <br>
+        <input type="submit" name="" value="I’m waiting for the movie to start" onclick="speed=2">
+        <input type="submit" name="" value="STOP" onclick="speed=0">
+        <script type="text/javascript">
+            var recurse = function() {
+                move();
+                window.requestAnimationFrame(recurse);
+            }
+            recurse();
+        </script>
+    </body>
+</html>
